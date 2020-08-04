@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>02 - Data Binding</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        {{ message }}
+      </p>
+      <p>My name is: {{ name }}</p>
+      <input v-on:input="mudarNome" />
+      <p>{{quote}}</p>
+      <a v-bind:href="docs">VueJs Documentation</a>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello, what is your name?',
+          nome: '',
+          quote: 'Welcome to VueJs',
+          docs: 'https://vuejs.org/'
+        },
+        methods: {
+          mudarNome: function (event) {
+            this.nome = event.target.value;
+          },
+
+          showQuote: function () {
+            return this.quote;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

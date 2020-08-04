@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>10 - Conditionals</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <!-- v-show - If value is true show, it's like conditional if-->
+    <div id="app">
+      <p v-if="nota === 'A'">Parabéns, você tirou um "A"!</p>
+      <p v-else-if="nota === 'B'">Você tirou um "B", mas pode melhorar!</p>
+      <p v-else-if="nota === 'C'">Você precisa melhorar, estude mais. Sua nota: "C"</p>
+      <p v-else>Nota ainda não publicada.</p>
+      <input v-model="nota" placeholder="Nota" />
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          nota: ''
+        }
+      });
+    </script>
+  </body>
+</html>

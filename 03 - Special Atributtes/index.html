@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>03 - Special Atributtes</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p><strong>Click (v-on:click) | Shortcut: (@click)</strong></p>
+      <button v-on:click="onClick"></button>
+      <hr />
+      <p><strong>Input change (v-on:input)</strong></p>
+      <p>My name is: {{ nome }}</p>
+      <input v-on:input="mudarNome" />
+      <hr />
+      <p><strong>Link (v-bind) | Shortcut: (:href='')</strong></p>
+      <a v-bind:href="docs">VueJs Documentation</a>
+      <hr />
+      <p><strong>Normal text (v-text)</strong></p>
+      <p v-once>Teacher: <span v-text="teacher"></span></p>
+      <hr />
+      <p><strong>Render Control (v-once)</strong></p>
+      <small
+        >When you put v-once, will render the element only one time. If the value is changed after
+        the render, the value of the element will not change</small
+      >
+      <p>Teacher: {{ getTeacher() }}</p>
+    </div>
+    <hr />
+
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          nome: '',
+          docs: 'https://vuejs.org/',
+          teacher: 'Plínio Naves'
+        },
+        methods: {
+          mudarNome: function (event) {
+            this.nome = event.target.value;
+          },
+          getTeacher: function () {
+            this.teacher = 'Plínio';
+            return this.teacher;
+          },
+          onClick: function (event) {
+            console.log('Pressed');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

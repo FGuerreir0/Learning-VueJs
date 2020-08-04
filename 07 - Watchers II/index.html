@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>07 - Watchers II</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ fullName }}</p>
+      <button @click="change">Change Name</button>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          fullName: 'Fabio Guerreiro'
+        },
+        watch: {
+          fullName: function (newName, oldName) {
+            const vm = this;
+            setTimeout(function () {
+              vm.fullName = 'Name was reseted';
+            }, 3000);
+          }
+        },
+        methods: {
+          change: function (event) {
+            this.fullName = 'Guerreiro Fabio';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

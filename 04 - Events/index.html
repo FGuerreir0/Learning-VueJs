@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>04 - Events</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <!--EVENT REFERENCE-->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/Events -->
+    <div id="app" v-on:mousemove="refreshCoords">
+      <button v-on:click="increment">+</button>
+      <label>Count: {{ count }}</label>
+      <button v-on:click="decrement">-</button>
+      <br />
+      <button v-on:click="reset">RESET</button>
+      <br />
+      <p>x:{{ x }} y:{{ y }}</p>
+      <hr />
+      <br />
+      <input v-on:blur='showName("My name is ", $event)' />
+      <p>{{ name }}</p>
+      <br />
+      <hr />
+      <br />
+      <input v-on:keyup="onKey " placeholder="Any key" />
+      <br />
+      <input v-on:keyup.enter.esc="onKey" placeholder="Press Enter or Esc" />
+      <br />
+      <input v-on:keyup.arrow-up="onKey" placeholder="Press Up Arrow" />
+      <br />
+      <hr />
+      <br />
+      <button v-on:click.left="onClick">Left Button</button>
+
+      <button v-on:click.middle="onClick">Middle Button</button>
+
+      <button v-on:click.right="onClick">Right Button</button>
+
+      <button v-on:click.right.prevent="onClick">Without Menu</button>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          count: 0,
+          x: 0,
+          y: 0,
+          name: ''
+        },
+        methods: {
+          increment: function () {
+            this.count++;
+          },
+          decrement: function () {
+            this.count--;
+          },
+          reset: function () {
+            this.count = 0;
+          },
+          refreshCoords: function (event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+          },
+          showName: function (text, event) {
+            console.log(text, event.target.value);
+            this.name = text + event.target.value;
+          },
+          onKey: function (event) {
+            console.log('A tecla ' + event.key + ' foi pressionada!');
+          },
+          onClick: function (event) {
+            console.log(event.button + 'Button was clicked!');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

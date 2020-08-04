@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>09 - V-Model</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input :value="fullName" @input="fullName = $event.target.value" />
+      <!-->It's the same as v.model-->
+      <input v-model="fullName" />
+      <p>{{ fullName }}</p>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          fullName: 'Fabio Guerreiro'
+        }
+      });
+    </script>
+  </body>
+</html>
