@@ -29,19 +29,24 @@
 
     <!-- coluna 2 -->
     <div class="col-4">
-      <FilmesListaItenInfo />
+      <FilmesListaItenInfo v-if="!editar" :filme='filmeseleccionado' @editarFilme='editarFilme' />
+
+      <FilmesListaItenEditar v-else :filme='filmeselecionado' />
     </div>
   </div>
 </template>
 
 <script>
+import { eventBus } from './../main'
 import FilmesListaIten from "./FilmesListaIten.vue";
 import FilmesListaItenInfo from "./FilmesListaItenInfo.vue";
+import FilmesListaItenEditar from "./FilmesListaItenEditar.vue";
 
 export default {
   components: {
     FilmesListaIten,
-    FilmesListaItenInfo
+    FilmesListaItenInfo,
+    FilmesListaItenEditar
   },
   data() {
     return {
@@ -50,7 +55,8 @@ export default {
         { id: 2, titulo: "Ironman", ano: 1999 },
         { id: 3, titulo: "Pantera Negra", ano: 2003 }
       ],
-      filmeselecionado: undefined
+      filmeselecionado: undefined,
+      editar: false
     };
   },
   methods:{
@@ -58,7 +64,26 @@ aplicarActive(filmeIterado){
 return{
   active: this.filmeselecionado && this.filmeselecionado.id === filmeIterado.id
 }
+},
+
+editarFilme(filme){
+  this.editar = true
+  this.filmeselecionado = filme
+},
+
+actualizarFilme(filmeActualizado){
+  const indice= this.filmes.findIndex(filme => filme.id === filmeActualizado.id)
+  this.filmes.splice(indice, 1, filmeActualizado)
+  this.filmeselecionado = undefined
+  this.editar = false
 }
+  },
+
+  created(){
+    eventBus.$on('selecionarFilme', (filmeSelecionado)=>{
+      this.filmeselecionado = filmeSelecionado
+    }),
+    eventBus.$on('actualizarFilme', this.actualizarFilme)
   }
 };
 </script>
