@@ -19,6 +19,13 @@
           Details...
         </template>
       </Post>
+
+      <hr>
+<button @click="selectedComponent='Home'">Home</button>
+<button @click="selectedComponent='About'">About</button>
+<button @click="selectedComponent='Post'">View Post</button>
+<p>{{ selectedComponent }}</p>
+<component :is="selectedComponent"></component>
   </div>
   
 </template>
@@ -26,9 +33,20 @@
 <script>
 import Post from './components/Post'
 
+
+import Home from './components/Home'
+import About from './components/About'
+
 export default {
   components:{
-    Post
+    Post,
+    Home,
+    About
+  },
+  data(){
+    return{
+        selectedComponent : 'Home'
+    }
   }
 }
 </script>
