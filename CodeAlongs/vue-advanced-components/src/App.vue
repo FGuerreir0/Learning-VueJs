@@ -5,7 +5,7 @@
         <h3 slot="head"> Passing custome html data</h3>
 
         <template slot="body">
-        <p>Learning named slots</p>
+        <p class="post_paragraph">Learning named slots, with inheritance styles </p>
         <span>...</span>
         </template>
 
@@ -38,4 +38,5 @@ export default {
   width:960px;
   margin:auto;
 }
+
 </style>

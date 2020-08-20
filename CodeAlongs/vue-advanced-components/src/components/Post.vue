@@ -45,4 +45,7 @@
   float:right;
   
 }
+.post_paragraph{
+  color: green
+}
 </style>
