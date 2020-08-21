@@ -23,9 +23,12 @@
       <hr>
 <button @click="selectedComponent='Home'">Home</button>
 <button @click="selectedComponent='About'">About</button>
-<button @click="selectedComponent='Post'">View Post</button>
 <p>{{ selectedComponent }}</p>
+
+<keep-alive>
+  <!-- :include="about" - mantem o componente about em cache | :exclude="[Home, Post]"  contrario do include | max="2" mantem só 2 componentes activos em cache-->
 <component :is="selectedComponent"></component>
+</keep-alive>
   </div>
   
 </template>
